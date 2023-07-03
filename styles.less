@@ -1,0 +1,83 @@
+@indent:4vw;//отступ горизонтальный
+@indentV:1vh;//отступ вертикальный
+//переменные для цвета
+@bgDark:#792879;
+@fontDark:#792879;
+@bgLight:lighten(@bgDark, 60%);
+@fontLight:#eee;
+//переменная для шрифта
+@font: 'Franklin Gothic Medium', 'Arial Narrow',
+Arial, sans-serif;
+//примесь для сброса стилей
+.reset(){
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+    //примесь для темной темы
+    .colorDark(){
+    background-color: @bgDark;
+    color:@bgLight;
+    }
+    //примесь для светлой темы
+    .colorLight(){
+    background-color: @bgLight;
+    color:@fontDark;
+    }
+    //примесь для работы с flex
+    .flex(@dir, @side){
+    display: flex;
+    flex-direction: @dir;
+    justify-content: @side;
+    }
+    //примесь для стилизации границы элемента
+    .border(@col, @perc){
+    border: 2px solid @col;
+    border-radius: @perc 0;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    }
+header{
+    //применим примесь .flex чтобы расположить
+    //элементы в строку
+    .flex(row, space-between);
+    //применим примесь .colorDark для задания
+    //темной темы
+    .colorDark();
+    //зададим отступы, используя переменные
+    padding: @indentV @indent;
+    //зададим позиционирование sticky чтобы элемент
+    //оставался на своем месте при прокручивании
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    //зададим стили всем ссылкам
+    a{
+    color: @fontLight;
+    text-decoration: none;
+    font-size: 2rem;
+    }
+    //зададим стили навигации
+    nav{
+    ul{
+    .reset();
+    li{
+    display: inline-block;
+    margin-left: @indentV;
+    //зададим стили ссылкам навигации
+    a{
+    display: block;
+    font-size: 100%;
+    padding: @indentV;
+    text-transform: capitalize;
+    .border(transparent, 20%);//зададим стили для ссылок при наведении
+    //и активной ссылке
+    &:hover, &.active{
+    .border(@fontLight, 20%);
+    }
+    }
+    }
+    }
+    }
+    }
